@@ -6,6 +6,9 @@ module.exports = {
     client: 'sqlite3',
     connection: {
       filename: './chugs-db.db'
+    },
+    seeds: {
+      directory: './seeds/dev'
     }
   },
 
