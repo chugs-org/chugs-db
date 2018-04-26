@@ -1,5 +1,6 @@
+import * as Knex from 'knex';
 
-exports.up = function(knex, Promise) {
+export function up(knex: Knex) {
   return knex.schema
     .createTable('product_image', table => {
       table.bigIncrements('id').primary();
@@ -9,7 +10,7 @@ exports.up = function(knex, Promise) {
     })
 };
 
-exports.down = function(knex, Promise) {
+export function down(knex: Knex) {
   return knex.schema
     .dropTableIfExists('product_image')
 };

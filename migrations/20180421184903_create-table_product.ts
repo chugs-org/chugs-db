@@ -1,4 +1,6 @@
-exports.up = (knex, Promise) => {
+import * as Knex from 'knex';
+
+export function up(knex: Knex) {
   return knex.schema
     .createTable('product', prodTable => {
       prodTable.bigIncrements('id').primary();
@@ -15,11 +17,11 @@ exports.up = (knex, Promise) => {
     })
     .createTable('enum_product-type', enumTable => {
       enumTable.string('value').notNullable().primary();
-      enumTable.int('id').notNullable().defaultTo(0);
+      enumTable.integer('id').notNullable().defaultTo(0);
     });
 };
 
-exports.down = (knex, Promise) => {
+export function down(knex: Knex) {
   return knex.schema
     .dropTableIfExists('product')
     .dropTableIfExists('enum_product-type')

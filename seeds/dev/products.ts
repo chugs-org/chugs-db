@@ -1,20 +1,21 @@
+import * as Knex from 'knex';
 
-exports.seed = function(knex, Promise) {
+export function seed(knex: Knex) {
   // Deletes ALL existing entries
   return knex('enum_product-type').del()
-    .then(function () {
+    .then(() => (
       // Inserts seed entries
-      return knex('enum_product-type').insert([
+      knex('enum_product-type').insert([
         { id: 1, value: 'beer' },
         { id: 2, value: 'cider' },
         { id: 3, value: 'spirits' },
         { id: 4, value: 'wine' }
-      ]);
-    })
-    .then(function () {
-      return knex('product').del()
-        .then(function () {
-          return knex('product').insert([
+      ])
+    ))
+    .then(() => (
+      knex('product').del()
+        .then(()=> (
+          knex('product').insert([
             {
               id: 1,
               name: 'Heineken',
@@ -51,7 +52,9 @@ exports.seed = function(knex, Promise) {
               number_in_stock: 11,
               type: 'wine'
             }
-          ]);
-        });
-    });
-};
+          ])
+        )
+      )
+    )
+  )
+}
